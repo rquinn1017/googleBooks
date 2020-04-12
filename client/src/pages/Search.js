@@ -9,9 +9,7 @@ class Search extends React.Component {
         books: []
     };
 
- 
-
-    makeBook = bookData => {
+     makeBook = bookData => {
         return {
             _id: bookData.id,
             title: bookData.volumeInfo.title,
