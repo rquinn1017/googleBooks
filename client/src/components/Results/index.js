@@ -1,11 +1,17 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 
+function refreshPage() {
+    window.location.reload(false);
+  }
+
 class Results extends Component {
 
     state = {
         savedBooks: [],
     }
+
+   
 
     componentDidMount() {
         API.savedBooks()
@@ -18,6 +24,7 @@ class Results extends Component {
         if (this.state.savedBooks.map(book => book._id).includes(book._id)) {
             API.deleteBook(book._id)
                 .then(deletedBook => this.setState({ savedBooks: this.state.savedBooks.filter(book => book._id !== deletedBook._id) }))
+                refreshPage()
                 .catch(err => console.error(err));
         } else {
             API.saveBook(book)
