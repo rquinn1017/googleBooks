@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 
 function refreshPage() {
-    window.location.reload(false);
-  }
+    API.savedBooks()
+        .then(savedBooks => this.setState({ savedBooks: savedBooks }))
+        .catch(err => console.error(err));
+}
 
 class Results extends Component {
 
